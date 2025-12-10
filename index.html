@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Digital Clock </title>
+
+    <!--  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- cascading style sheet  -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* font-family: ; */
+        }
+
+        .digital_clock_conta {
+            /* background: url(); */
+            background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1950&q=80');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100vh;
+        }
+
+        .digital_clock_conta .nav_top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .digital_clock_conta .nav_top .logo {
+            margin-left: 40px;
+        }
+
+        .digital_clock_conta .nav_top .logo h1 {
+            color: #fff;
+        }
+
+        .digital_clock_conta .nav_top .logo h1 span {
+            color: #ff3d00;
+        }
+
+        .digital_clock_conta .nav_top .nav {
+            margin-right: 40px;
+        }
+
+        .digital_clock_conta .nav_top .nav i {
+            color: #fff;
+            font-size: 20px;
+            margin-left: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 10px;
+        }
+
+        .digital_clock_conta .nav_top .nav i:hover {
+            color: #ff3d00;
+            background: white;
+            padding: 10px;
+            border-radius: 50%;
+        }
+
+        .digital_clock_conta .digital_clock {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 70vh;
+            gap: 20px;
+        }
+
+        .digital_clock_conta .digital_clock h1 {
+            color: #fff;
+            font-size: 150px;
+            font-weight: 600;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .digital_clock_conta .digital_clock p {
+            color: #fff;
+            font-size: 150px;
+            font-weight: 600;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .setting_menu{
+                position:absolute;
+    top:90px;
+    right:20px;
+    width:clamp(220px, 40vw, 300px);
+    background:rgba(255,255,255,0.2);
+    backdrop-filter:blur(12px);
+    padding:18px;
+    border-radius:10px;
+    display:none;
+    border:1px solid rgba(255,255,255,0.3);
+        }
+
+        .setting_menu .volume{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+
+
+        input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  background: #e0e0e0;
+  border-radius: 10px;
+  outline: none;
+  transition: background 0.3s ease;
+}
+
+       .alarm-box{
+            margin-top: 20px;
+        }
+
+
+/* Alarm Inputs */
+.alarm-box input{
+    width:80px;
+    padding:5px;
+    text-align:center;
+    margin-top: 10px;
+}
+
+.alarm-box button{
+    padding:6px 10px;
+    border:none;
+    background:#38bdf8;
+    color:#fff;
+    border-radius:5px;
+    margin-left: 8px;
+    cursor:pointer;
+}
+
+
+/* Thumb styling */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 20px;
+  width: 20px;
+  background: #38bdf8; /* modern blue */
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: 0.2s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+/* Firefox thumb */
+input[type="range"]::-moz-range-thumb {
+  height: 20px;
+  width: 20px;
+  background: #38bdf8;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: 0.2s ease;
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  transform: scale(1.15);
+}
+
+/* Progress (Chrome only) */
+input[type="range"]::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, #38bdf8 var(--value), #e0e0e0 var(--value));
+  border-radius: 10px;
+}
+
+        /* Mobile adjustments */
+        @media (max-width: 600px) {
+            .nav_top {
+                padding: 15px;
+            }
+
+            .nav i {
+                font-size: 18px;
+                margin-left: 10px;
+            }
+
+            .setting_menu {
+                right: 10px;
+                top: 80px;
+            }
+        }
+
+        /* Responsive */
+@media (max-width: 600px) {
+  .nav_top {
+    padding: 1rem;
+  }
+  .nav i {
+    margin-left: 5px;
+    font-size: 20px;
+  }
+  .setting_menu {
+    width: 90%;
+    right: 5%;
+    top: 70px;
+  }
+  .digital_clock h1 {
+    font-size: clamp(40px, 20vw, 120px);
+  }
+}
+
+/* Mobile adjustments for very small screens (~400px) */
+@media (max-width: 400px){
+  .nav_top{
+    padding:1rem 0.5rem;
+  }
+  .nav i{
+    font-size:18px;
+    margin-left:5px;
+    padding:6px;
+  }
+  .digital_clock h1{
+    font-size:clamp(30px,20vw,90px);
+  }
+  .setting_menu{
+    width:90%;
+    right:5%;
+    top:70px;
+    padding:10px;
+  }
+
+          .digital_clock_conta .nav_top {
+            padding: 10px;
+            margin-top: 9px;
+        }
+
+                .digital_clock_conta .nav_top .logo {
+            margin-left: 5px;
+        }
+
+
+                .digital_clock_conta .nav_top .nav i {
+            margin-left: 5px;
+            padding: 10px;
+        }
+
+                .digital_clock_conta .nav_top .nav {
+            margin-right: 10px;
+        }
+
+                .digital_clock_conta .digital_clock h1 {
+            font-size: 80px;
+        }
+}
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Digital Clock  -->
+    <div class="digital_clock_conta">
+
+        <!--  -->
+        <div class="nav_top">
+            <div class="logo">
+                <h1> Digital <span> Clock </span></h1>
+            </div>
+
+            <div class="nav">
+                <i class="fas fa-music" id="playBtn"></i>
+                <i class="fas fa-palette" id="bgBtn"></i>
+                <a href="https://github.com/bonanekabene"><i class="fab fa-github"></i></a>
+                <i class="fas fa-gear"></i>
+            </div>
+        </div>
+
+        <div class="digital_clock">
+            <h1 id="time"> </h1>
+        </div>
+    </div>
+
+    <div class="setting_menu" id="setting">
+        <div class="volume">
+            <i class="fas fa-volume-high"></i>
+            <input type="range" max="100" min="0" value="50" step="1" onchange="audio.volume=this.value/100">
+        </div>
+
+        <section class="alarm-box">
+        <h3>Alarm</h3>
+        <input type="time" id="alarmTime">
+        <button onclick="setAlarm()">Set</button>
+        <button onclick="clearAlarm()">Clear</button>
+        <p id="alarmStatus"></p>
+
+        <section class="weather" id="weatherBox" style="display:none;">
+        <h2 id="cityName">City</h2>
+        <p id="temp"> 687 </p>
+        <p id="condition"> 7676 </p>
+    </section>
+    </section>
+
+
+    </div>
+
+
+    <!--  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.x.x/css/all.min.css">
+
+    <script>
+        function updateClock() {
+            let now = new Date();
+            let hrs = String(now.getHours()).padStart(2, '0');
+            let mins = String(now.getMinutes()).padStart(2, '0');
+            let secs = String(now.getSeconds()).padStart(2, '0');
+
+            document.getElementById("time").textContent = `${hrs}:${mins}:${secs}`;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+
+
+        //setting menu toggle
+        const settingBtn = document.querySelector(".fa-gear");
+        const settingMenu = document.getElementById("setting");
+        settingBtn.addEventListener("click", () => {
+            if (settingMenu.style.display === "none" || settingMenu.style.display === "") {
+                settingMenu.style.display = "block";
+            } else {
+                settingMenu.style.display = "none";
+            }
+        });
+
+
+        //  ****************************************
+        // Change Background Image on Button Click
+        const btn = document.getElementById("bgBtn");
+        const box = document.querySelector(".digital_clock_conta");
+
+        // CDN image links 
+        const images = [
+            "https://picsum.photos/id/1018/1920/1080",
+            "https://picsum.photos/id/1025/1920/1080",
+            "https://picsum.photos/id/1003/1920/1080",
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1950&q=80",
+            "https://picsum.photos/id/1043/1920/1080",
+            "https://picsum.photos/id/1074/1920/1080",
+            // "https://picsum.photos/id/433/1600/900",
+            // "https://picsum.photos/id/44/1600/900",
+            // "https://picsum.photos/id/103/1600/900",
+            // "https://picsum.photos/id/564/1600/900",
+            // "https://picsum.photos/id/367/1600/900",
+        ];
+
+        // Preload images
+        images.forEach(src => {
+            const img = new Image();
+            img.src = src;
+        });
+
+        let index = 0;
+
+        btn.addEventListener("click", () => {
+            box.style.backgroundImage = `url('${images[index]}')`;
+
+            // Move to next image (loop)
+            index = (index + 1) % images.length;
+        });
+
+
+        const audio = new Audio("Digital clock audio.mp3");
+        const btnClick = document.getElementById("playBtn");
+
+        btnClick.addEventListener("click", () => {
+            if (audio.paused) {
+                audio.play();
+                //btnClick.textContent = "Pause";
+            } else {
+                audio.pause();
+                //btnClick.textContent = "Play";
+            }
+        });
+
+        /* ALARM */
+let alarmTime = null;
+let alarmActive = false;
+
+function setAlarm(){
+    alarmTime=document.getElementById("alarmTime").value;
+    alarmActive=true;
+    document.getElementById("alarmStatus").textContent =
+        "Alarm set for " + alarmTime;
+}
+
+function clearAlarm(){
+    alarmActive=false;
+    alarmTime=null;
+    document.getElementById("alarmStatus").textContent="Alarm cleared";
+}
+
+setInterval(()=>{
+    if(!alarmActive) return;
+    let now = new Date();
+    let current = now.toTimeString().slice(0,5);
+
+    if(current === alarmTime){
+        audio.play();
+        alert("⏰ Alarm!");
+    }
+},1000);
+    </script>
+</body>
+
+</html>
