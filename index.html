@@ -292,7 +292,7 @@ input[type="range"]::-webkit-slider-runnable-track {
     <div class="setting_menu" id="setting">
         <div class="volume">
             <i class="fas fa-volume-high"></i>
-            <input type="range" max="100" min="0" value="50" step="1" onchange="audio.volume=this.value/100">
+            <input type="range" max="100" min="0" value="30" step="1" onchange="audio.volume=this.value/100">
         </div>
 
         <section class="alarm-box">
@@ -378,7 +378,7 @@ input[type="range"]::-webkit-slider-runnable-track {
         });
 
 
-        const audio = new Audio("Digital clock audio.mp3");
+        const audio = new Audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3");
         const btnClick = document.getElementById("playBtn");
 
         btnClick.addEventListener("click", () => {
